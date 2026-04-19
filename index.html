@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公司內部點餐系統</title>
+    <link rel="stylesheet" href="all.css">
+</head>
+<body>
+
+    <!-- ===== 登入畫面 ===== -->
+    <div id="login-screen" class="screen">
+        <div class="login-box">
+            <div class="login-logo">🍱</div>
+            <h1>公司點餐系統</h1>
+            <p class="login-subtitle">請使用公司 Google 帳號登入</p>
+            <!-- Google 登入按鈕容器：由 all.js 動態渲染 -->
+            <div id="google-signin-btn"></div>
+        </div>
+    </div>
+
+    <!-- ===== 未授權畫面 ===== -->
+    <div id="unauthorized-screen" class="screen hidden">
+        <div class="message-box error-box">
+            <div class="message-icon">🚫</div>
+            <h2>未獲授權</h2>
+            <p>您的帳號不在授權名單內，請聯絡管理員。</p>
+            <button class="btn-secondary" onclick="signOut()">登出並重試</button>
+        </div>
+    </div>
+
+    <!-- ===== 主畫面 ===== -->
+    <div id="main-screen" class="screen hidden">
+
+        <!-- 頂部導覽列 -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="header-title">🍱 點餐系統</h1>
+                <div class="user-info">
+                    <span id="user-name" class="user-label"></span>
+                    <button class="btn-small" onclick="signOut()">登出</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+
+            <!-- 管理員專區：設定今日餐廳（僅管理員可見） -->
+            <section id="admin-config" class="card hidden">
+                <h2 class="section-title">⚙️ 設定今日餐廳</h2>
+                <p class="section-hint">請勾選今日開放點餐的餐廳</p>
+                <!-- 餐廳勾選框由 all.js 動態產生 -->
+                <div id="restaurant-checkboxes" class="checkbox-group"></div>
+                <button class="btn-primary" onclick="saveTodayConfig()">儲存今日餐廳設定</button>
+            </section>
+
+            <!-- 點餐介面：依今日餐廳顯示菜單卡片 -->
+            <section id="order-section" class="card">
+                <h2 class="section-title">🛒 今日點餐</h2>
+                <!-- 菜單卡片由 all.js 動態產生 -->
+                <div id="menu-container"></div>
+            </section>
+
+            <!-- 確認訂單：顯示今日已送出的訂單 -->
+            <section id="orders-section" class="card">
+                <div class="section-header">
+                    <h2 class="section-title">📋 今日訂單</h2>
+                    <div class="section-actions">
+                        <button class="btn-secondary btn-small" onclick="loadTodayOrders()">重新整理</button>
+                        <button class="btn-secondary btn-small" onclick="copyOrders()">📋 一鍵複製</button>
+                    </div>
+                </div>
+                <!-- 訂單列表由 all.js 動態產生 -->
+                <div id="orders-list"></div>
+            </section>
+
+            <!-- 管理員專區：清空今日點餐（僅管理員可見） -->
+            <section id="admin-clear" class="card hidden">
+                <h2 class="section-title">🗑️ 管理員操作</h2>
+                <p class="section-hint warning-hint">警告：此操作將清除今日所有點餐記錄，且無法復原。</p>
+                <button class="btn-danger" onclick="confirmClearOrders()">清空今日點餐</button>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ===== Toast 通知提示（頁面底部浮動） ===== -->
+    <div id="toast" class="toast hidden"></div>
+
+    <!-- Google Identity Services：提供 OAuth 登入與 Token 功能 -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <!-- all.js：所有業務邏輯 -->
+    <script src="all.js"></script>
+
+</body>
+</html>

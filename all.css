@@ -1,0 +1,668 @@
+/* ============================================================
+   公司內部點餐系統 - 主樣式表
+   設計原則：簡約、現代、行動優先
+   ============================================================ */
+
+/* ----- CSS 變數 ----- */
+:root {
+    --primary:        #4f7fff;
+    --primary-dark:   #3a66e0;
+    --secondary:      #6c757d;
+    --success:        #28a745;
+    --danger:         #dc3545;
+    --warning:        #ffc107;
+    --info:           #17a2b8;
+    --bg:             #f4f6fb;
+    --card-bg:        #ffffff;
+    --text:           #2c3e50;
+    --text-muted:     #6c757d;
+    --border:         #dee2e6;
+    --radius:         12px;
+    --shadow:         0 2px 12px rgba(0, 0, 0, 0.08);
+    --shadow-hover:   0 4px 20px rgba(0, 0, 0, 0.14);
+    --transition:     0.2s ease;
+    --header-height:  56px;
+}
+
+/* ----- Reset & Base ----- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC',
+                 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* ----- 畫面切換工具類別 ----- */
+.hidden {
+    display: none !important;
+}
+
+.screen {
+    min-height: 100vh;
+}
+
+/* ============================================================
+   登入畫面
+   ============================================================ */
+#login-screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 24px;
+}
+
+.login-box {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 48px 40px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-logo {
+    font-size: 64px;
+    line-height: 1;
+    margin-bottom: 16px;
+}
+
+.login-box h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+}
+
+.login-subtitle {
+    color: var(--text-muted);
+    margin-bottom: 32px;
+    font-size: 0.95rem;
+}
+
+/* Google 登入按鈕樣式 */
+.btn-google {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    color: #3c4043;
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: box-shadow var(--transition), background var(--transition);
+    width: 100%;
+    justify-content: center;
+}
+
+.btn-google:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    background: #f8f9fa;
+}
+
+/* ============================================================
+   未授權畫面
+   ============================================================ */
+#unauthorized-screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    padding: 24px;
+}
+
+.message-box {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 40px 32px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 360px;
+}
+
+.error-box {
+    border-top: 4px solid var(--danger);
+}
+
+.message-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.message-box h2 {
+    font-size: 1.4rem;
+    color: var(--danger);
+    margin-bottom: 12px;
+}
+
+.message-box p {
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+
+/* ============================================================
+   主畫面 Header
+   ============================================================ */
+.app-header {
+    background: var(--card-bg);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--header-height);
+}
+
+.header-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 16px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.header-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.user-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+}
+
+/* ============================================================
+   主內容區域
+   ============================================================ */
+.main-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 16px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ============================================================
+   卡片容器
+   ============================================================ */
+.card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+}
+
+.section-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--text);
+}
+
+.section-hint {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+}
+
+.warning-hint {
+    color: var(--danger);
+    font-weight: 500;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.section-header .section-title {
+    margin-bottom: 0;
+}
+
+.section-actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* ============================================================
+   按鈕
+   ============================================================ */
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    font-family: inherit;
+    font-weight: 500;
+    transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: #fff;
+    padding: 12px 24px;
+    font-size: 0.95rem;
+    width: 100%;
+    border-radius: 8px;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: var(--primary-dark);
+    box-shadow: 0 4px 12px rgba(79, 127, 255, 0.4);
+}
+
+.btn-secondary {
+    background: #f0f2f5;
+    color: var(--text);
+    padding: 10px 18px;
+    font-size: 0.9rem;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: #e2e6ea;
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: #fff;
+    padding: 12px 24px;
+    font-size: 0.95rem;
+    width: 100%;
+    border-radius: 8px;
+}
+
+.btn-danger:hover:not(:disabled) {
+    background: #c82333;
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+}
+
+.btn-small {
+    padding: 6px 14px;
+    font-size: 0.82rem;
+    background: #f0f2f5;
+    color: var(--text);
+    border-radius: 6px;
+}
+
+.btn-small:hover:not(:disabled) {
+    background: #e2e6ea;
+}
+
+/* 點餐按鈕 */
+.btn-order {
+    background: var(--primary);
+    color: #fff;
+    padding: 8px 18px;
+    font-size: 0.875rem;
+    border-radius: 8px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.btn-order:hover:not(:disabled) {
+    background: var(--primary-dark);
+}
+
+/* ============================================================
+   管理員：餐廳勾選框
+   ============================================================ */
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: border-color var(--transition), background var(--transition);
+    font-size: 0.9rem;
+    user-select: none;
+}
+
+.checkbox-label:hover {
+    border-color: var(--primary);
+    background: #eef2ff;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary);
+    cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"]:checked + span {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.checkbox-label:has(input:checked) {
+    border-color: var(--primary);
+    background: #eef2ff;
+}
+
+/* ============================================================
+   菜單區塊
+   ============================================================ */
+.restaurant-section {
+    margin-bottom: 24px;
+}
+
+.restaurant-section:last-child {
+    margin-bottom: 0;
+}
+
+.restaurant-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary);
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+    border-bottom: 2px solid var(--primary);
+}
+
+.category-group {
+    margin-bottom: 16px;
+}
+
+.category-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+    padding-left: 2px;
+}
+
+/* 餐點卡片 */
+.menu-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    transition: box-shadow var(--transition);
+}
+
+.menu-card:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.card-info {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.item-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    flex: 1;
+}
+
+.item-price {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
+.card-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.note-input {
+    flex: 1;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 7px 12px;
+    font-size: 0.875rem;
+    font-family: inherit;
+    background: var(--card-bg);
+    color: var(--text);
+    transition: border-color var(--transition);
+    min-width: 0;
+}
+
+.note-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(79, 127, 255, 0.15);
+}
+
+.note-input::placeholder {
+    color: #adb5bd;
+}
+
+/* ============================================================
+   附加選項列（飯量 / 甜度 / 冰量）
+   ============================================================ */
+.options-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.option-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #f0f2f5;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 4px 10px 4px 8px;
+}
+
+.option-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.option-select {
+    border: none;
+    background: transparent;
+    font-size: 0.875rem;
+    font-family: inherit;
+    color: var(--text);
+    cursor: pointer;
+    padding: 2px 0;
+    outline: none;
+    /* 讓原生箭頭仍可見 */
+    appearance: auto;
+}
+
+.option-select:focus {
+    color: var(--primary);
+}
+
+/* ============================================================
+   訂單列表
+   ============================================================ */
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    overflow-x: auto;
+    display: block;
+}
+
+.orders-table th,
+.orders-table td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+}
+
+.orders-table thead th {
+    background: var(--bg);
+    font-weight: 600;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+.orders-table tbody tr:hover {
+    background: #f8f9fa;
+}
+
+.orders-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ============================================================
+   狀態提示文字
+   ============================================================ */
+.loading,
+.empty-hint,
+.error-hint {
+    text-align: center;
+    padding: 32px 16px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.error-hint {
+    color: var(--danger);
+}
+
+/* ============================================================
+   Toast 通知
+   ============================================================ */
+.toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    border-radius: 30px;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    white-space: nowrap;
+    max-width: calc(100vw - 32px);
+    text-align: center;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from { transform: translateX(-50%) translateY(20px); opacity: 0; }
+    to   { transform: translateX(-50%) translateY(0);    opacity: 1; }
+}
+
+.toast-success  { background: var(--success); }
+.toast-error    { background: var(--danger);  }
+.toast-warning  { background: var(--warning); color: #333; }
+.toast-info     { background: var(--info);    }
+
+/* ============================================================
+   響應式設計 - 手機優先
+   ============================================================ */
+@media (max-width: 480px) {
+    .login-box {
+        padding: 36px 24px;
+    }
+
+    .card {
+        padding: 18px 14px;
+    }
+
+    .card-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-order {
+        width: 100%;
+        text-align: center;
+    }
+
+    .orders-table th,
+    .orders-table td {
+        padding: 8px 8px;
+        font-size: 0.8rem;
+    }
+
+    .user-label {
+        display: none;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (min-width: 600px) {
+    .card-actions {
+        flex-direction: row;
+    }
+
+    .btn-primary,
+    .btn-danger {
+        width: auto;
+    }
+}
