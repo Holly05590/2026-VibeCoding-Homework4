@@ -8,7 +8,7 @@
 // ============================================================
 const CONFIG = {
     // 您的 OAuth 2.0 用戶端 ID（在 GCP 主控台 → API 和服務 → 憑證 中建立）
-    CLIENT_ID: '1050757386673-op09gu66lkjpnrjrjo4k330o16ml8vo3.apps.googleusercontent.com',
+    CLIENT_ID: '773178309570-788jnj08pukssfvtevc18nq5sme9qp1t.apps.googleusercontent.com',
 
     // 目標 Google Sheets 的試算表 ID（URL 中 /d/ 和 /edit 之間的那段字串）
     SPREADSHEET_ID: '1YBPel649pQ52uNiGs_IRMRkNXJy-l8rDuClmoCWXwuE',
